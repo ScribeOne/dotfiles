@@ -1,0 +1,71 @@
+{
+    "layer": "top",
+    "height" : 28,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "temperature", "cpu", "battery", "network",
+    "tray"],
+    "sway/window": {
+        "max-length": 50
+    },
+      "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": " {temperatureC}°C ",
+        "format": " {temperatureC}°C"
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+    "network": {
+       // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": " {essid} ({signalStrength}%)",
+        "format-ethernet": "  {ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected": "Disconnected ⚠",
+        "tooltip": false
+    },
+    "pulseaudio": {
+        // "scroll-step": 2, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+	      "format-charging": " {capacity}%"
+    },
+    "memory": {
+	      "interval": 5,
+	      "format": "Mem {}%"
+    },
+    "cpu": {
+	    "interval": 5,
+	    "format": " {usage:2}%"
+    },
+    "clock": {
+		    "format": "{:%a %d %b %I:%M %p}",
+		    "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+	"icon-size": 20
+    }
+}
