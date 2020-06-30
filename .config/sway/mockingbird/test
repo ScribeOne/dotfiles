@@ -1,0 +1,1 @@
+bindsym $mod+F10 exec alacritty

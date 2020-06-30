@@ -3,13 +3,29 @@
     "height" : 28,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "temperature", "cpu", "battery", "network",
-    "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "temperature", "cpu", "memory", "network", "tray"],
     "sway/window": {
         "max-length": 50
     },
-      "temperature": {
-        // "thermal-zone": 2,
+    "sway/workspaces": {
+	"disable-scroll": true,
+	"format": "{icon}",
+	"format-icons": {
+	    "1": "",
+	    "2": "",
+	    "3": "",
+	    "6": "",
+	    "7": "",
+	    "8": "",
+	    "9": "",
+	    "10": "",
+	    "urgent": "",
+	   // "focused": "",
+	   //s "default":""
+	}
+    },
+    "temperature": {
+        "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
         "format-critical": " {temperatureC}°C ",
@@ -23,7 +39,7 @@
     "network": {
        // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": "  {ifname}: {ipaddr}/{cidr} ",
+        "format-ethernet": "  {ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠",
         "tooltip": false
     },
@@ -48,15 +64,16 @@
     },
     "memory": {
 	      "interval": 5,
-	      "format": "Mem {}%"
+	      "format": " {used:0.1f}G/{total:0.1f}G"
     },
     "cpu": {
 	    "interval": 5,
-	    "format": " {usage:2}%"
+	    "format": "{usage:2}%"
     },
     "clock": {
-		    "format": "{:%a %d %b %I:%M %p}",
-		    "tooltip": false
+        "format": "{:%a %d %b %H:%M %p}",
+        "tooltip": false,
+	"on-click": "alacritty --class calcurse -e 'calcurse'",
     },
     "idle_inhibitor": {
         "format": "{icon}",

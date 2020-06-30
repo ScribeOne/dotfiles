@@ -37,8 +37,8 @@
 /* The whole bar */
 #waybar {
     color:rgba(217, 216, 216, 1);
-    background: rgba(50, 50, 50,1.0);
-    font-family: Hack, Noto Sans, Cantarell, sans-serif;
+    background: rgba(50, 50, 50,0.9);
+    font-family: Noto Sans, Cantarell, sans-serif;
     font-size: 14px;
 }
 
@@ -168,8 +168,8 @@
 }
 
 #workspaces button {
-	padding: 3px;
-  font-weight: bold;
+	padding: 0 5px;
+	font-weight: bold;
 	color:rgba(217, 216, 216, 1);
 }
 #workspaces button.focused {
