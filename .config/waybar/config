@@ -39,9 +39,10 @@
     "network": {
        // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": "  {ifname}: {ipaddr}/{cidr} ",
+        "format-ethernet": "  {ifname}: {ipaddr}", 
         "format-disconnected": "Disconnected ⚠",
-        "tooltip": false
+        "tooltip": false,
+	"interval": 1 
     },
     "pulseaudio": {
         // "scroll-step": 2, // %, can be a float
@@ -76,7 +77,7 @@
 	"on-click": "alacritty --class calcurse -e 'calcurse'",
     },
     "idle_inhibitor": {
-        "format": "{icon}",
+        "format": "<span color='#589df6'>{icon}</span>",
         "format-icons": {
             "activated": "",
             "deactivated": ""
