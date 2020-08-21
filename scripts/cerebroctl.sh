@@ -3,11 +3,11 @@
 
 p_sicherung=/mnt/sicherung
 p_public=/mnt/stuff
-source_sicherung=//cerebro/sicherung
-source_stuff=//cerebro/stuff
+source_sicherung=//10.1.1.23/sicherung
+source_stuff=//10.1.1.23/stuff
 smb_options='username=alex,uid=1000,rw'
-welcome_string='cerebroctl v0.1'
-cerebro_ip='192.168.178.13'
+welcome_string='cerebroctl v0.2'
+cerebro_ip='10.1.1.23'
 cerebro_mac='d0:50:99:86:59:d7'
 
 cerebro_online() {
@@ -22,9 +22,9 @@ obey_orders() {
 
 # Hello
 if type -P figlet >/dev/null; then
-figlet $welcome_string
+    figlet $welcome_string
 else
-  echo $welcome_string
+    echo $welcome_string
 fi
 
 
@@ -91,12 +91,17 @@ do
   2) ping $cerebro_ip
   ;;
 
-  3) ssh alex@192.168.178.13 'beep -f 165.4064 -l 100 -n -f 130.813 -l 100 -n -f 261.626 -l 100 -n -f 523.251 -l 100 -n -f 1046.50 -l 100 -n -f 2093.00 -l 100 -n -f 4186.01 -l 100'
+  3) ssh alex@$cerebro_ip 'beep -f 165.4064 -l 100 -n -f 130.813 -l 100 -n -f 261.626 -l 100 -n -f 523.251 -l 100 -n -f 1046.50 -l 100 -n -f 2093.00 -l 100 -n -f 4186.01 -l 100'
   ;;
 
   5) sudo mount -t cifs -o $smb_options $source_stuff $p_public
      obey_orders
-     echo -e "mount public to /mnt/stuff \e[32mdone "
+    if [ -d "/mnt/stuff/Movies" ]
+	then
+	    echo -e "mount public to /mnt/stuff \e[32mdone \e[39m "
+	else
+	    echo -e "mount public to /mnt/stuff \e[31mERROR \e[39m "
+    fi
   ;;
 
   6) sudo mount -t cifs -o $smb_options $source_sicherung $p_sicherung
