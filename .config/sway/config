@@ -4,7 +4,7 @@ set $term alacritty
 set $menu bemenu-run --bottom --no-overlap --monitor=all --prompt="▶" -i -nb "#3f3f3f" --nf "#dcdccc" | swaymsg exec
 set $screenshot grim /home/scribe/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
 set $screenclip slurp | grim -g - /home/scribe/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
-set $lockscreen /home/scribe/Pictures/lockscreen.jpg
+set $lockscreen /home/scribe/Pictures/wallpaper.jpg
 set $wallpaper /home/scribe/Pictures/wallpaper.jpg
 
 #set $start /usr/local/bin/swaystart.sh

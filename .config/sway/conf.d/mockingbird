@@ -7,7 +7,7 @@ input "1739:0:Synaptics_TM2722-001" {
 }
 
 # usb keyboard
-input "1241:361:USB_Keyboard" {
+input "*" {
     xkb_layout de
     xkb_variant nodeadkeys
     xkb_options caps:escape

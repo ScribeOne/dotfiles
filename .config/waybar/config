@@ -3,7 +3,8 @@
     "height" : 28,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "temperature", "cpu", "memory", "network", "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "temperature", "cpu", "memory", "network",
+    "battery","tray"],
     "sway/window": {
         "max-length": 50
     },
@@ -60,7 +61,12 @@
     "battery": {
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""],
-	      "format-charging": " {capacity}%"
+	      "format-charging": " {capacity}%",
+	"states": {
+	    "warning": 25,
+	    "critical": 10
+	},
+	"interval": 30
     },
     "memory": {
 	      "interval": 5,

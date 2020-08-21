@@ -64,6 +64,24 @@
  * Module styles
  * -------------------------------------------------------------------------- */
 
+#battery{
+    color: rgba(0,155,0,1);
+}
+
+#battery.warning {
+    color: rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color: rgba(217, 216, 216, 1);
+}
+
+
+ /*
 #battery {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -89,7 +107,7 @@
     animation-name: blink-critical;
     animation-duration: 2s;
 }
-
+*/
 #clock {
     font-weight: bold;
 }
@@ -132,7 +150,7 @@
 }
 
 #network {
-    /* No styles */
+
 }
 
 #network.disconnected {

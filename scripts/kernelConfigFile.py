@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# nur neue Kernel version als Argument angeben
+
 import re
 import glob
 import sys
