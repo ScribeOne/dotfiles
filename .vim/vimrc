@@ -23,7 +23,7 @@ set backspace=indent,eol,start	" Backspace behaviour
  
 
 set encoding=utf-8  " Encoding
-
+set background=dark
 
 filetype plugin indent on
 syntax on
