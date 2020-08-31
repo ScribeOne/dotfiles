@@ -7,12 +7,12 @@ input "1739:0:Synaptics_TM2722-001" {
 }
 
 # usb keyboard
-input "1241:361:USB_Keyboard" {
+input * {
     xkb_layout de
     xkb_variant nodeadkeys
     xkb_options caps:escape
 }
 
 # Screen brightness controls
-#bindsym XF86MonBrightnessUp exec light -A 20 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec light -U 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 20 # decrease screen brightness

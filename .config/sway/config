@@ -4,7 +4,7 @@ set $term alacritty
 set $menu bemenu-run --bottom --no-overlap --monitor=all --prompt="▶" -i -nb "#3f3f3f" --nf "#dcdccc" | swaymsg exec
 set $screenshot grim /home/scribe/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
 set $screenclip slurp | grim -g - /home/scribe/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
-set $lockscreen /home/scribe/Pictures/wallpaper.jpg
+set $lockscreen /home/scribe/Pictures/wallpaper-bubbles.jpg
 set $wallpaper /home/scribe/Pictures/wallpaper.jpg
 
 #set $start /usr/local/bin/swaystart.sh
@@ -25,7 +25,7 @@ exec dbus-daemon --session --fork --address=unix:path=$XDG_RUNTIME_DIR/bus
 
 bindsym $mod++m exec $term --class alsamixer -e 'alsamixer' --device hw:PCH
 
-
+bindsym $mod+Shift+t exec $test123
 
 ### Key bindings
 
@@ -57,9 +57,9 @@ bindsym $mod+F12 exec swaylock -f -e -i $lockscreen
 ## Media Keys
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume 0 +5% ; audio-notification.sh'  #increase sound volume
-bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume 0 -5% ; audio-notification.sh' #decrease sound volume
-bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute 0 toggle ; audio-notification.sh' # mute sound
+bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume 0 +5% ; exec ~/scripts/audio.sh'  #increase sound volume
+bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume 0 -5% ; exec ~/scripts/audio.sh' #decrease sound volume
+bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute 0 toggle ; exec ~/scripts/audio.sh' # mute sound
 
 # Notifications
 bindsym Control+Space exec makoctl dismiss
@@ -129,6 +129,9 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+e mode "$mode_system"
+
+
+set $lock exec swaylock -f -e -i $lockscreen
 
 
 ### Layout stuff:
