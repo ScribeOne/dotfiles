@@ -36,11 +36,12 @@ bindsym $mod+Shift+t exec $test123
 bindsym $mod+Print exec $screenshot
 bindsym $mod+Shift+Print exec $screenclip
 
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec $term -e ~/scripts/tmux_start.sh 
+bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 
-bindsym $mod+Shift+Return exec caja
+#bindsym $mod+Shift+Return exec caja
 
 bindsym $mod+w exec virt-manager
 
