@@ -9,6 +9,7 @@ export ZSH="/home/scribe/.oh-my-zsh"
 alias gupdate="sudo emerge --update --newuse --changed-use --deep @world"
 alias fupdate="sudo dnf upgrade --refresh"
 alias dupdate="sudo apt update && sudo apt full-upgrade"
+alias archupdate="sudo pacman -Syu"
 alias activate="source venv/bin/activate"
 
 # Set name of the theme to load --- if set to "random", it will
