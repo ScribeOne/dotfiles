@@ -1,15 +1,15 @@
 # Variables
 set $mod Mod4
 set $term alacritty
-set $menu bemenu-run --bottom --no-overlap --monitor=all --prompt="▶" -i -nb "#3f3f3f" --nf "#dcdccc" | swaymsg exec
-set $screenshot grim /home/scribe/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
-set $screenclip slurp | grim -g - /home/scribe/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
-set $lockscreen /home/scribe/Pictures/wallpaper.jpg
-set $wallpaper /home/scribe/Pictures/wallpaper.jpg
+set $menu bemenu-run --bottom -H 25  --no-overlap --monitor=all --prompt="▶" -i -nb "#3f3f3f" --nf "#dcdccc" | swaymsg exec
+set $screenshot grim ~/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
+set $screenclip slurp | grim -g - ~/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
+set $lockscreen ~/Pictures/wallpaper.jpg
+set $wallpaper ~/Pictures/wallpaper.jpg
+set $lock_bg  ~/Pictures/wallpaper.jpg
 
 #set $start /usr/local/bin/swaystart.sh
 #set $sleep loginctl suspend
-#set $qutebrowser flatpak run org.qutebrowser.qutebrowser &
 
 # wallpaper for all screens
 output * bg $wallpaper fill
@@ -18,25 +18,22 @@ output * bg $wallpaper fill
 font pango:Noto 12
 
 # Autostart
-
 # start dbus user session for notify daemon
-exec dbus-daemon --session --fork --address=unix:path=$XDG_RUNTIME_DIR/bus
-
-
-bindsym $mod++m exec $term --class alsamixer -e 'alsamixer' --device hw:PCH
-
-bindsym $mod+Shift+t exec $test123
+# exec dbus-daemon --session --fork --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec mako
 
 ### Key bindings
 
 #bindsym $mod+p exec $qutebrowser
 #bindsym $mod+k exec $sleep
-#bindsym $mod+t exec $start
+bindsym $mod+t exec mako
+
+bindsym $mod++m exec $term --class alsamixer -e 'alsamixer' --device hw:PCH
 
 bindsym $mod+Print exec $screenshot
 bindsym $mod+Shift+Print exec $screenclip
 
-bindsym $mod+Return exec $term -e ~/scripts/tmux_start.sh 
+bindsym $mod+Return exec $term -e tmux
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
@@ -45,15 +42,10 @@ bindsym $mod+d exec $menu
 
 bindsym $mod+w exec virt-manager
 
-bindsym $mod+F1 exec vivaldi-snapshot
-bindsym $mod+F2 exec firefox-bin-wayland
-
+bindsym $mod+F1 exec vivaldi-stable
+bindsym $mod+F2 exec firefox
 
 bindsym $mod+F5 reload
-
-bindsym $mod+F12 exec swaylock -f -e -i $lockscreen
-
-
 
 ## Media Keys
 
@@ -67,63 +59,14 @@ bindsym Control+Space exec makoctl dismiss
 bindsym Control+Shift+Space exec makoctl dismiss --all
 
 
-## Move around
-
-# change focus, vim keys
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# change focus, cursor keys
-bindsym $mod+left focus left
-bindsym $mod+down focus down
-bindsym $mod+up focus up
-bindsym $mod+right focus right
-
-# move focused window, vim keys
-bindsym $mod+shift+h move left
-bindsym $mod+shift+j move down
-bindsym $mod+shift+k move up
-bindsym $mod+shift+l move right
-
-# move focused window, cursor keys
-bindsym $mod+shift+left move left
-bindsym $mod+shift+down move down
-bindsym $mod+shift+up move up
-bindsym $mod+shift+right move right
-
-# Resize mode
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $mod+h resize shrink width 10px
-    bindsym $mod+j resize grow height 10px
-    bindsym $mod+k resize shrink height 10px
-    bindsym $mod+l resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-
 # System mode
 set $mode_system System: (l) lock, (e) logout, (s) suspend, (r) reboot, (q) shutdown
 mode "$mode_system" {
     bindsym l exec $lock, mode "default"
     bindsym e exit
-    bindsym s exec loginctl suspend, mode "default"
-    bindsym r exec loginctl reboot, mode "default"
-    bindsym q exec loginctl poweroff, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym r exec reboot, mode "default"
+    bindsym q exec shutdown -h now, mode "default"
 
     # return to default mode
     bindsym Return mode "default"
@@ -132,37 +75,8 @@ mode "$mode_system" {
 bindsym $mod+e mode "$mode_system"
 
 
-set $lock exec swaylock -f -e -i $lockscreen
+# Status Bar
 
-
-### Layout stuff:
-
-# Split mode
-bindsym $mod+b splith ; exec notify-send -t 1500 "horizontal tiling"
-bindsym $mod+v splitv ; exec notify-send -t 1500 "vertical tiling"
-
-## Switch the current container between different layout styles
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
-
-# Make the current focus fullscreen
-bindsym $mod+f fullscreen
-
-# Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
-
-# Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
-
-# Move focus to the parent container
-bindsym $mod+a focus parent
-
-
-
-### Status Bar
-
-# Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
     swaybar_command waybar

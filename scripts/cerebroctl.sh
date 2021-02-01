@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# Ali paths
+#p_sicherung=~/Documents/private/sicherung
+#p_public=~/Documents/private/stuff
+
+# Normal paths
 p_sicherung=/mnt/sicherung
 p_public=/mnt/stuff
+
 source_sicherung=//10.1.1.23/sicherung
 source_stuff=//10.1.1.23/stuff
 smb_options='username=alex,uid=1000,rw'
@@ -22,14 +28,14 @@ cerebro_online() {
 }
 
 sicherung_is_mounted() {
-  mount | grep /mnt/sicherung
+  mount | grep $p_sicherung
 }
 
 stuff_is_mounted() {
-   mount | grep /mnt/stuff
+   mount | grep $p_public
 }
 
-print_status(){  
+print_status(){
 echo -e "Check if Mastermind is reachable at $cerebro_ip... "
 
 if cerebro_online >/dev/null; then
@@ -68,7 +74,7 @@ if type -P figlet > /dev/null; then
     figlet $welcome_string
 else
     echo $welcome_string
-    echo 'Note: Install figlet you lazy ass!' 
+    echo 'Note: Install figlet you lazy ass!'
 fi
 
 # Check the status
@@ -109,48 +115,48 @@ do
 
   5) if stuff_is_mounted > /dev/null; then
       echo ''
-      echo 'Stuff is already mounted' 
-      echo 'Nothing to do ...'    
-    else 
+      echo 'Stuff is already mounted'
+      echo 'Nothing to do ...'
+    else
        if sudo mount -t cifs -o $smb_options $source_stuff $p_public ; then
-        echo -e "mount public to /mnt/stuff \e[32mdone \e[39m "
+        echo -e "mount public to $p_public \e[32mdone \e[39m "
       else
-        echo -e "mount public to /mnt/stuff \e[31mERROR \e[39m "
+        echo -e "mount public to $p_public \e[31mERROR \e[39m "
       fi
     fi
   ;;
 
   6) if sicherung_is_mounted > /dev/null; then
       echo ''
-      echo 'Sicherung already mounted' 
-      echo 'Nothing to do ...'    
-    else 
+      echo 'Sicherung already mounted'
+      echo 'Nothing to do ...'
+    else
        if sudo mount -t cifs -o $smb_options $source_sicherung $p_sicherung ; then
-        echo -e "Mount Sicherung to /mnt/sicherung \e[32mdone \e[39m "
+        echo -e "Mount Sicherung to $p_sicherung \e[32mdone \e[39m "
       else
-        echo -e "Mount Sicherung to /mnt/sicherung \e[31mERROR \e[39m "
+        echo -e "Mount Sicherung to $p_sicherung \e[31mERROR \e[39m "
       fi
     fi
   ;;
 
   7) if sudo umount $p_public ; then
       echo -e 'Unmount public \e[32mOK ✓\e[39m'
-    else 
+    else
       echo -e 'Unmount public \e[31mERROR\e[39m'
     fi
   ;;
 
   8) if sudo umount $p_sicherung ; then
       echo -e 'Unmount sicherung \e[32mOK ✓\e[39m'
-    else 
+    else
       echo -e 'Unmount sicherung \e[31mERROR\e[39m'
     fi
-  ;; 
+  ;;
 
   9) print_status
-  ;; 
+  ;;
 
-  12|q|exit) echo 'Goodbye ...'  
+  12|q|exit) echo 'Goodbye ...'
   exit
   ;;
 

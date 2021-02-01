@@ -6,7 +6,7 @@ input type:touchpad {
     middle_emulation enabled
 }
 
-# usb keyboard
+# Keyboard
 input * {
     xkb_layout de
     xkb_variant nodeadkeys

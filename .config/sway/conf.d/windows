@@ -31,3 +31,5 @@ for_window [class="Caja"] floating enable
 for_window [class="Microsoft Teams - Preview"] floating enable
 
 for_window [class="^Lxappearance$"] floating enable
+
+for_window [class="Tor Browser"] floating enable
