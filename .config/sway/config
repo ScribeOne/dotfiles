@@ -1,6 +1,6 @@
 # Variables
 set $mod Mod4
-set $term alacritty
+set $term kitty
 set $menu bemenu-run --bottom -H 25  --no-overlap --monitor=all --prompt="▶" -i -nb "#3f3f3f" --nf "#dcdccc" | swaymsg exec
 set $screenshot grim ~/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
 set $screenclip slurp | grim -g - ~/Pictures/screenshots/screenshot-$(date +"%d-%m-%Y-%H-%M-%S").png
