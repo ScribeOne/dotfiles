@@ -32,7 +32,6 @@ log_path=/home/scribe/rsync.log
 
 
 echo -e "$now - Sync Notebooks from $(hostname) to server" >> $log_path
-
 rsync --progress --delete -avzh -e 'ssh -p22' $local_notebooks michi@$cerebro_ip:$remote_notebooks >>  $log_path
 
 
