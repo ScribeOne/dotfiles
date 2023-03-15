@@ -50,9 +50,12 @@ bindsym $mod+F5 reload
 ## Media Keys
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume 0 +5% ; exec ~/scripts/audio.sh'  #increase sound volume
-bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume 0 -5% ; exec ~/scripts/audio.sh' #decrease sound volume
-bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute 0 toggle ; exec ~/scripts/audio.sh' # mute sound
+#bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume 0 +5% ; exec ~/scripts/audio.sh'  #increase sound volume
+bindsym XF86AudioRaiseVolume exec bash -c 'pactl set-sink-volume @DEFAULT_SINK@ +5% ; exec ~/scripts/audio.sh'  #increase sound volume
+#bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume 0 -5% ; exec ~/scripts/audio.sh' #decrease sound volume
+bindsym XF86AudioLowerVolume exec bash -c 'pactl set-sink-volume @DEFAULT_SINK@ -5% ; exec ~/scripts/audio.sh' #decrease sound volume
+#bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute 0 toggle ; exec ~/scripts/audio.sh' # mute sound
+bindsym XF86AudioMute exec bash -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle ; exec ~/scripts/audio.sh' # mute sound
 
 # Notifications
 bindsym Control+Space exec makoctl dismiss
